@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * description : 订单
  *
@@ -30,4 +32,20 @@ public class VideoOrder {
      */
     private int money;
 
+    /**
+     * 用户编号
+     */
+    private int userId;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+
+    public VideoOrder(String tradeNo, String title, int money) {
+        this.tradeNo = tradeNo;
+        this.title = title;
+        this.money = money;
+    }
 }
