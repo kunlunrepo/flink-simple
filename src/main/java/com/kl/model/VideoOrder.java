@@ -1,9 +1,12 @@
 package com.kl.model;
 
+import com.kl.util.TimeUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -47,5 +50,19 @@ public class VideoOrder {
         this.tradeNo = tradeNo;
         this.title = title;
         this.money = money;
+    }
+
+    /**
+     * 打印
+     */
+    public String toString() {
+        return "VideoOrder{" +
+                "tradeNo='" + tradeNo + '\'' +
+                ", title='" + title + '\'' +
+                ", money=" + money +
+                ", userId=" + userId +
+                ", createTime=" +
+                TimeUtil.format(createTime) +
+                '}';
     }
 }
