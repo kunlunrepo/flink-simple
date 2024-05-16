@@ -32,7 +32,7 @@ public class Flink22App {
     public static void main(String[] args) throws Exception {
 
         // 构建执⾏任务环境以及任务的启动的⼊⼝, 存储全局相关的参数
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         env.setRuntimeMode(RuntimeExecutionMode.AUTOMATIC);
 

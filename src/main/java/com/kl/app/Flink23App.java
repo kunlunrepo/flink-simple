@@ -7,6 +7,7 @@ import org.apache.commons.collections.IteratorUtils;
 import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.configuration.Configuration;
@@ -40,11 +41,11 @@ public class Flink23App {
     public static void main(String[] args) throws Exception {
 
         // 构建执⾏任务环境以及任务的启动的⼊⼝, 存储全局相关的参数
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         env.setRuntimeMode(RuntimeExecutionMode.AUTOMATIC);
 
-        env.setParallelism(1);
+//        env.setParallelism(1);
 
         // source：套接字
         DataStream<String> stringDS = env.socketTextStream("127.0.0.1", 8888);

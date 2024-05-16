@@ -43,21 +43,21 @@ public class Flink28App {
     public static void main(String[] args) throws Exception {
 
         // 构建执⾏任务环境以及任务的启动的⼊⼝, 存储全局相关的参数
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         env.setRuntimeMode(RuntimeExecutionMode.AUTOMATIC);
 
         env.setParallelism(1);
 
         // source：套接字
-        DataStream<String> stringDS = env.socketTextStream("127.0.0.1", 8888);
+        DataStream<String> stringDS = env.socketTextStream("192.168.10.55", 9999);
 
         // transformation：CEP
         DataStream<Tuple3<String, String, Integer>> flatMapDS = stringDS.flatMap(new FlatMapFunction<String, Tuple3<String, String, Integer>>() {
             @Override
             public void flatMap(String value, Collector<Tuple3<String, String, Integer>> out) throws Exception {
                 String[] arr = value.split(",");
-                // java,2024-05-15 09-10-10,15
+                // AA,2022-11-11 12:01:01,-1
                 out.collect(Tuple3.of(arr[0], arr[1], Integer.parseInt(arr[2])));
             }
         });
